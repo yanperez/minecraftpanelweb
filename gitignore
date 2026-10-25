@@ -1,0 +1,20 @@
+# Dependencias
+node_modules/
+
+# Datos privados (nunca subir)
+.env
+users.json
+automation.json
+audit.jsonl
+
+# Datos generados
+backups/
+cache/
+*.tar.gz
+*.log
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
