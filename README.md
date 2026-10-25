@@ -1,6 +1,7 @@
 # ⛏️ MC Panel
 
 Panel web ligero para administrar tu servidor de Minecraft desde el navegador, sin entrar por SSH.
+Prueba http://yanperez.com:3000/ Usuario: test Contraseña: test123 cuenta invitado.
 
 ## ✨ Qué puedes hacer
 
