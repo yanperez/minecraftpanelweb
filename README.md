@@ -21,13 +21,13 @@ Panel web ligero para administrar tu servidor de Minecraft desde el navegador, s
 
 ## Instalación rápida (VPS nuevo)
 
-Cambia `TU-USUARIO` por tu usuario de GitHub. El nombre de la carpeta que se crea depende de cómo lo descargues, por eso el instalador funciona **desde cualquier carpeta**.
+El nombre de la carpeta que se crea depende de cómo lo descargues, por eso el instalador funciona **desde cualquier carpeta**.
 
 **Opción A: con git** (la carpeta se llama `minecraftpanelweb`)
 
 ```bash
 sudo apt install -y git
-git clone https://github.com/TU-USUARIO/minecraftpanelweb.git
+git clone https://github.com/yanperez/minecraftpanelweb.git
 cd minecraftpanelweb
 sudo bash install.sh --java 21
 ```
@@ -36,7 +36,7 @@ sudo bash install.sh --java 21
 
 ```bash
 sudo apt install -y unzip curl
-curl -L -o minecraftpanelweb.zip https://github.com/TU-USUARIO/minecraftpanelweb/archive/refs/heads/main.zip
+curl -L -o minecraftpanelweb.zip https://github.com/yanperez/minecraftpanelweb/archive/refs/heads/main.zip
 unzip minecraftpanelweb.zip
 cd minecraftpanelweb-main
 sudo bash install.sh --java 21
