@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inicia sesión</title><link rel="icon" href="https://yanperez.com/minecraft.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
+<link rel="stylesheet" href="/static/style.css"></head>
+<body class="center">
+<form class="card login" method="POST" action="/login">
+  <h2>🔐 Servidor MC</h2>
+  <input name="username" placeholder="Usuario" autocomplete="username" autofocus required>
+  <input type="password" name="password" placeholder="Contraseña" autocomplete="current-password" required>
+  <p id="err" class="error" hidden>Usuario o contraseña incorrectos</p>
+  <button class="green">Entrar</button>
+  <button type="button" id="bLang" title="Idioma / Language">🌐 ES</button>
+</form>
+<div class="footer">⚡ Creado por YanPerez con 🤖 Node.js</div>
+<script src="/static/i18n.js"></script>
+<script src="/static/login.js"></script>
+</body></html>

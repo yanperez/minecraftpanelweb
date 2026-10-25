@@ -1,0 +1,86 @@
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;font-family:system-ui,Arial,sans-serif;background:#0f172a;color:#e2e8f0}
+body.center{display:flex;justify-content:center;align-items:center;height:100vh}
+.container{max-width:1000px;margin:auto;padding:20px 20px 50px}
+h1,h2{text-align:center;color:#38bdf8;margin:8px 0 16px}
+.card{background:#1e293b;padding:15px;border-radius:12px;margin-bottom:15px;box-shadow:0 5px 20px rgba(0,0,0,.4)}
+.login{width:320px;display:flex;flex-direction:column;gap:10px}
+.bar,.row{display:flex;gap:8px;align-items:center}.wrap{flex-wrap:wrap}.bar{flex-wrap:wrap}.row{margin-top:10px}
+.row:first-child{margin-top:0}.grow{flex:1}.muted{color:#94a3b8;font-size:13px}.error{color:#f87171;margin:0;text-align:center}
+button,.btn{padding:9px 13px;border:0;border-radius:8px;background:#334155;color:#fff;cursor:pointer;text-decoration:none;font-size:14px}
+button:hover:not(:disabled),.btn:hover{filter:brightness(1.2)}button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #38bdf8}
+.green{background:#16a34a}.red{background:#dc2626}.blue{background:#0284c7}.orange{background:#f97316}
+input,textarea{padding:11px;border:0;border-radius:8px;background:#0f172a;color:#fff;width:100%;font-size:14px}
+.row input{flex:1}
+.badge{padding:5px 12px;border-radius:99px;font-weight:600;font-size:14px}
+.badge.on{background:#14532d;color:#86efac}.badge.off{background:#450a0a;color:#fca5a5}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}.tabs button{background:#1e293b}.tabs .active{background:#0284c7}
+#log{height:380px;overflow:auto;margin:0;padding:12px;background:#020617;color:#94a3b8;border-radius:8px;font:12.5px/1.45 ui-monospace,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+#content{height:420px;margin-top:10px;font:13px ui-monospace,Consolas,monospace;resize:vertical}
+.list{list-style:none;padding:0;margin:12px 0 0}.list li{display:flex;gap:6px;align-items:center;padding:7px 8px;border-bottom:1px solid #334155}
+.name{flex:1;cursor:pointer;word-break:break-all}.name:hover{color:#38bdf8}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:7px;border-bottom:1px solid #334155;word-break:break-all}
+.footer{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);color:#94a3b8;font-size:12px;opacity:.7;pointer-events:none}
+.toast{position:fixed;top:16px;right:16px;background:#16a34a;color:#fff;padding:11px 16px;border-radius:8px;z-index:9;max-width:80vw}.toast.err{background:#dc2626}
+
+#log div{min-height:1em}
+.l-err{color:#f87171}.l-warn{color:#facc15}.l-join{color:#4ade80}.l-leave{color:#fb923c}
+.l-chat{color:#fff}.l-cmd{color:#38bdf8}.l-sys{color:#22d3ee}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ct{display:flex;justify-content:space-between;font-size:13px;color:#94a3b8;margin-bottom:5px}.ct b{color:#e2e8f0}
+.chart canvas{width:100%;height:80px;display:block;background:#0f172a;border-radius:8px}
+@media(max-width:600px){.charts{grid-template-columns:1fr}}
+
+.avatar{width:32px;height:32px;border-radius:6px;image-rendering:pixelated;background:#0f172a;flex:none}
+.sub{display:flex;gap:10px;align-items:center;color:#38bdf8;font-size:16px;margin:22px 0 10px}
+.sub .badge{font-size:12px;padding:3px 10px}
+
+select{padding:9px;border:0;border-radius:8px;background:#0f172a;color:#fff;font-size:14px}
+input[type=checkbox]{width:auto;accent-color:#16a34a;transform:scale(1.2)}
+.chk{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.dim{opacity:.45}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:6px}
+.form label:not(.chk){display:flex;flex-direction:column;gap:5px;font-size:13px;color:#94a3b8}
+/* Tema Minecraft */
+body.mc{font-family:'VT323',ui-monospace,monospace;font-size:19px;background-color:#4a3320;color:#fff;
+  background-image:linear-gradient(45deg,#0003 25%,transparent 25%,transparent 75%,#0003 75%),linear-gradient(45deg,#0003 25%,transparent 25%,transparent 75%,#0003 75%);
+  background-size:32px 32px;background-position:0 0,16px 16px}
+body.mc h1,body.mc h2{font-family:'Press Start 2P',monospace;font-size:20px;color:#55ff55;text-shadow:3px 3px #1a3d1a}
+body.mc h1{border-bottom:12px solid #4caf2f;padding-bottom:12px}body.mc .sub{color:#55ff55}
+body.mc .card{background:#3c3c3c;border-radius:0;box-shadow:inset 3px 3px #6b6b6b,inset -3px -3px #1e1e1e,0 4px 0 #0008}
+body.mc button,body.mc .btn{border-radius:0;font-family:inherit;font-size:inherit;background:#7a7a7a;text-shadow:2px 2px #3f3f3f;box-shadow:inset 3px 3px #b8b8b8,inset -3px -3px #4a4a4a}
+body.mc button.green{background:#3f8f2f;box-shadow:inset 3px 3px #7bd45f,inset -3px -3px #1f5a14}
+body.mc button.red{background:#a02020;box-shadow:inset 3px 3px #e06060,inset -3px -3px #5a0f0f}
+body.mc button.blue{background:#2a6fb0;box-shadow:inset 3px 3px #6fb0f0,inset -3px -3px #14406e}
+body.mc button.orange{background:#c56a14;box-shadow:inset 3px 3px #f0a050,inset -3px -3px #7a3c08}
+body.mc .tabs button{background:#4d4d4d}body.mc .tabs .active{background:#3f8f2f}
+body.mc input,body.mc textarea,body.mc select{border-radius:0;background:#111;border:2px solid #6b6b6b;font-family:inherit;font-size:inherit}
+body.mc .badge,body.mc .toast,body.mc .avatar,body.mc canvas,body.mc #log{border-radius:0}
+
+.grp{grid-column:1/-1;margin:14px 0 0;color:#38bdf8;font-size:14px;border-bottom:1px solid #334155;padding-bottom:4px}
+body.mc .grp{color:#55ff55;font-family:'Press Start 2P',monospace;font-size:12px}
+
+/* Permisos por rol (el servidor también los exige) */
+body.lv1 .min2,body.lv1 .min3,body.lv2 .min3{display:none!important}
+body.lv1 [data-tab=control],body.lv1 [data-tab=backups],body:not(.lv3) [data-tab=files],body:not(.lv3) [data-tab=auto],
+body:not(.lv3) [data-tab=mods],body:not(.lv3) [data-tab=audit],body.lv1 #bStart,body.lv1 #bStop,body.lv1 #bRestart,
+body.lv1 #cmd,body.lv1 #bCmd,body.lv1 #wname,body.lv1 #bWAdd,body.lv1 #bWToggle,body.lv1 #wlist button,body.lv1 #banlist button,
+body:not(.lv3) #oplist button,body:not(.lv3) #blist button,body:not(.lv3) #blist a{display:none}
+
+.container{padding-top:28px}
+
+body:not(.own) .ownonly{display:none!important}
+.pcard{display:flex;gap:14px;align-items:center;margin:12px 0 0;background:#0f172a}.pcard .avatar{width:64px;height:64px}
+.motd{background:#000;border:2px solid #555;padding:10px;margin-top:8px;font:18px/1.3 'VT323',ui-monospace,monospace;min-height:3.4em;white-space:pre-wrap}
+.sw{width:26px;height:26px;padding:0;border:2px solid #666}
+
+.overlay{position:fixed;inset:0;background:#000a;z-index:20;display:flex;align-items:center;justify-content:center;padding:14px}
+.picker{width:min(760px,100%);max-height:92vh;display:flex;flex-direction:column;gap:10px;margin:0}
+.pk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(48px,1fr));gap:4px;overflow:auto;min-height:180px;max-height:46vh;padding:6px;background:#0f172a;border-radius:8px}
+.pk-cell{width:100%;aspect-ratio:1;padding:5px;background:#1e293b;border:2px solid transparent;border-radius:6px}
+.pk-cell.sel{border-color:#38bdf8;background:#0c4a6e}
+.ic{width:100%;height:100%;object-fit:contain;image-rendering:pixelated;display:block}.ic.big{width:40px;height:40px}
+.ph{display:flex;align-items:center;justify-content:center;font-size:12px;color:#94a3b8}
+body.mc .pk-cell,body.mc .pk-grid{border-radius:0}
+
+.guestbar{background:#78350f;color:#fde68a;padding:8px 12px;border-radius:8px;margin-bottom:12px;text-align:center;font-size:14px}

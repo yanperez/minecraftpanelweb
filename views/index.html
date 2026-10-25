@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Servidor Minecraft</title><link rel="icon" href="https://yanperez.com/minecraft.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
+<link rel="stylesheet" href="/static/style.css"></head>
+<body class="lv1"><div class="container">
+
+  <div id="guestBar" class="guestbar" hidden>👁 Modo invitado: puedes ver todo, pero no modificar nada</div>
+  <div class="card bar">
+    <span id="status" class="badge off">● Apagado</span><span id="stats" class="muted"></span><span class="grow"></span>
+    <button id="bTheme" title="Cambiar tema">🎨</button><button id="bLang" title="Idioma / Language">🌐 ES</button>
+    <button id="bStart" class="green">🟢 Encender</button>
+    <button id="bRestart" class="blue">🔄 Reiniciar</button>
+    <button id="bStop" class="red">🔴 Apagar</button>
+    <button id="bLogout" class="orange">Salir</button>
+  </div>
+
+  <div class="card charts">
+    <div class="chart"><div class="ct"><span>CPU</span><b id="cpuV">0%</b></div><canvas id="cCpu"></canvas></div>
+    <div class="chart"><div class="ct"><span>RAM</span><b id="ramV">0 MB</b></div><canvas id="cRam"></canvas></div>
+  </div>
+
+  <nav class="tabs">
+    <button data-tab="console" class="active">📜 Consola</button>
+    <button data-tab="players">👥 Jugadores</button>
+    <button data-tab="files">📂 Archivos</button>
+    <button data-tab="control">⚡ Control</button>
+    <button data-tab="auto">⏱️ Automático</button>
+    <button data-tab="mods">🧩 Plugins</button>
+    <button data-tab="backups">💾 Backups</button>
+    <button data-tab="audit">🧾 Actividad</button>
+    <button data-tab="account">🔑 Cuenta</button>
+  </nav>
+
+  <section id="console" class="card tab">
+    <pre id="log"></pre>
+    <div class="row"><input id="cmd" placeholder="Escribe un comando (↑ ↓ para el historial)" autocomplete="off"><button id="bCmd" class="green">Enviar</button></div>
+  </section>
+
+  <section id="players" class="card tab" hidden>
+    <div class="row"><strong id="pcount" class="grow">Jugadores en línea</strong><button id="bPlayers">🔄 Actualizar</button></div>
+    <ul id="plist" class="list"></ul>
+    <div id="pcard" class="card pcard" hidden></div>
+    <p class="muted">Kick y Ban permiten escribir un motivo (opcional).</p>
+
+    <h3 class="sub">✅ Whitelist <span id="wstate" class="badge off">Desactivada</span><span class="grow"></span><button id="bWToggle">Activar</button></h3>
+    <div class="row"><input id="wname" placeholder="Nombre del jugador" autocomplete="off"><button id="bWAdd" class="green">Agregar</button></div>
+    <ul id="wlist" class="list"></ul>
+
+    <h3 class="sub">🚫 Baneados</h3>
+    <ul id="banlist" class="list"></ul>
+
+    <div class="min2">
+      <h3 class="sub">🛡️ Operadores (OP)</h3>
+      <div class="row min3"><input id="opname" placeholder="Nombre del jugador" autocomplete="off"><button id="bOpAdd" class="green">Dar OP</button></div>
+      <ul id="oplist" class="list"></ul>
+    </div>
+  </section>
+
+  <section id="files" class="card tab" hidden>
+    <div id="browser">
+      <div class="row wrap">
+        <button id="bBack">⬅️ Atrás</button><strong id="path" class="grow">/</strong>
+        <button id="bUp" class="green">⬆️ Subir</button><input id="fileInput" type="file" multiple hidden>
+        <button id="bNewFile">📄 Archivo</button><button id="bNewDir">📁 Carpeta</button>
+      </div>
+      <ul id="list" class="list"></ul>
+      <p class="muted">Arrastra archivos aquí para subirlos.</p>
+    </div>
+    <div id="editor" hidden>
+      <div class="row"><strong id="fname" class="grow"></strong><button id="bSave" class="green">💾 Guardar</button><button id="bClose">Cerrar</button></div>
+      <textarea id="content" spellcheck="false"></textarea>
+    </div>
+  </section>
+
+  <section id="control" class="card tab" hidden>
+    <h3 class="sub">⚡ Comandos rápidos</h3>
+    <div id="quick" class="row wrap"></div>
+    <div class="row"><input id="sayMsg" placeholder="Mensaje para todos los jugadores" autocomplete="off"><button id="bSay" class="green">📢 Enviar</button></div>
+    <div class="min3">
+      <h3 class="sub">🎨 Editor de MOTD</h3>
+      <div id="motdPal" class="row wrap"></div>
+      <textarea id="motdIn" rows="2" spellcheck="false" placeholder="Escribe el mensaje (2 líneas máx). Usa los colores de arriba"></textarea>
+      <div id="motdPrev" class="motd"></div>
+      <div class="row"><button id="bMotd" class="green">💾 Guardar MOTD</button></div>
+    </div>
+    <h3 class="sub min3">⚙️ Configuración del servidor</h3>
+    <div id="cfgForm" class="form min3"></div>
+    <div class="row min3"><button id="bCfgSave" class="green">💾 Guardar configuración</button></div>
+    <p class="muted min3">Los cambios se aplican al reiniciar el servidor.</p>
+    <div class="ownonly">
+      <h3 class="sub">🧠 Memoria RAM (solo Owner)</h3>
+      <div class="form"><label>Máxima (-Xmx)<input id="ramMax" placeholder="4G"></label><label>Inicial (-Xms)<input id="ramMin" placeholder="4G"></label></div>
+      <p class="muted"><span id="ramInfo"></span> Ejemplos: 4G o 2048M. Reinicia el servidor para aplicar.</p>
+      <div class="row"><button id="bRam" class="green">💾 Guardar RAM</button></div>
+    </div>
+  </section>
+
+  <section id="auto" class="card tab" hidden>
+    <h3 class="sub">😴 Apagar sin jugadores</h3>
+    <label class="chk"><input type="checkbox" id="asOn"> Apagar el servidor si está vacío durante <input id="asMin" type="number" min="1" max="240" value="10" style="width:80px"> minutos</label>
+    <h3 class="sub">🔁 Reinicio diario</h3>
+    <label class="chk"><input type="checkbox" id="rsOn"> Reiniciar todos los días a las <input id="rsTime" type="time" value="04:00" style="width:130px"></label>
+    <p class="muted">Hora actual del VPS: <b id="vpsNow">--</b>. Se avisa a los jugadores 60 segundos antes.</p>
+    <div class="row"><button id="bAutoSave" class="green">💾 Guardar</button></div>
+  </section>
+
+  <section id="mods" class="card tab" hidden>
+    <div class="row"><strong class="grow">Plugins y mods instalados</strong><button id="bMods">🔄 Actualizar</button></div>
+    <ul id="modlist" class="list"></ul>
+    <p class="muted">Desactivar renombra el archivo a .jar.disabled. Para instalar uno nuevo, súbelo en Archivos (carpeta plugins o mods). Reinicia el servidor para aplicar.</p>
+  </section>
+
+  <section id="backups" class="card tab" hidden>
+    <div class="row"><button id="bBackup" class="green">💾 Crear backup del mundo</button></div>
+    <ul id="blist" class="list"></ul>
+  </section>
+
+  <section id="account" class="card tab" hidden>
+    <h3 class="sub">🔑 Mi cuenta: <span id="meName"></span> <span id="meRole" class="badge on"></span></h3>
+    <div class="form">
+      <label>Contraseña actual<input id="pwCur" type="password" autocomplete="current-password"></label>
+      <label>Nueva contraseña (mín. 6)<input id="pwNew" type="password" autocomplete="new-password"></label>
+    </div>
+    <div class="row"><button id="bPw" class="green">Cambiar contraseña</button></div>
+    <div class="min3">
+      <h3 class="sub">👥 Usuarios del panel</h3>
+      <div class="row wrap"><input id="uName" placeholder="Usuario (3-20)" autocomplete="off"><input id="uPass" type="password" placeholder="Contraseña (mín. 6)" autocomplete="new-password">
+        <select id="uRole"><option value="user">Usuario (solo ver)</option><option value="mod">Mod</option><option value="owner">Owner</option></select>
+        <button id="bUAdd" class="green">Crear</button></div>
+      <ul id="ulist" class="list"></ul>
+      <p class="muted">Usuario: solo ve consola, jugadores y estado. Mod: además usa comandos, kick/ban, whitelist, enciende/apaga y crea backups. Admin: además archivos, configuración, plugins, automatización, OPs y usuarios (Usuario/Mod). Owner: todo, incluida la RAM.</p>
+    </div>
+  </section>
+
+  <section id="audit" class="card tab" hidden>
+    <table><thead><tr><th>Hora</th><th>Acción</th><th>Detalle</th></tr></thead><tbody id="aud"></tbody></table>
+  </section>
+</div>
+<div class="footer">⚡ Creado por YanPerez con 🤖 Node.js</div>
+<div id="picker" class="overlay" hidden>
+  <div class="card picker">
+    <div class="row"><strong id="pkTitle" class="grow"></strong><button id="pkClose">Cerrar</button></div>
+    <input id="pkSearch" placeholder="Buscar item (ej: diamante, espada, torch)" autocomplete="off">
+    <div id="pkInfo" class="muted"></div>
+    <div id="pkGrid" class="pk-grid"></div>
+    <div id="pkNone" class="row" hidden><span class="muted">Sin resultados</span><button id="pkCustom"></button></div>
+    <div id="pkBar" class="row" hidden>
+      <span id="pkSelBox"></span><strong id="pkName" class="grow"></strong>
+      <span id="pkQ" class="row"></span>
+      <input id="pkQty" type="number" min="1" max="2304" value="1" style="width:90px">
+      <button id="pkGive" class="green">Dar</button>
+    </div>
+  </div>
+</div>
+<script src="/static/i18n.js"></script>
+<script src="/static/app.js"></script>
+</body></html>
