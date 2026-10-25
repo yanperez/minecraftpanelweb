@@ -41,7 +41,7 @@ echo "==> 2/6 Preparando el usuario y los archivos del panel..."
 id "$USER_NAME" >/dev/null 2>&1 || useradd -m -s /bin/bash "$USER_NAME"
 mkdir -p "$APP"
 if [ "$SRC" != "$APP" ]; then
-  rsync -a --exclude node_modules --exclude .env --exclude users.json --exclude automation.json \
+  rsync -a --exclude .git --exclude node_modules --exclude .env --exclude users.json --exclude automation.json \
     --exclude audit.jsonl --exclude backups --exclude cache "$SRC"/ "$APP"/
 fi
 
